@@ -1,0 +1,11 @@
+id;follow_up;status;customer_id;employee_id;product_id
+1;back Generic;DELETE;1;1;1
+2;Savings Avon;MAINTAIN_PO;2;2;2
+3;e-services Chicken;OPPORTUNITY;3;3;3
+4;Legacy;MAINTAIN_PO;4;4;4
+5;Bacon circuit primary;DELETE;5;5;5
+6;North interface;OPPORTUNITY;6;6;6
+7;quantifying connecting payment;DELETE;7;7;7
+8;Avon International;OPPORTUNITY;8;8;8
+9;Configuration Account;MAINTAIN_PO;9;9;9
+10;Response;DELETE;10;10;10

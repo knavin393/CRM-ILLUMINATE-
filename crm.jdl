@@ -1,0 +1,152 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName crm
+    blueprints []
+    buildTool maven
+    cacheProvider no
+    clientFramework angular
+    clientPackageManager npm
+    clientTheme none    
+    databaseType sql
+    devDatabaseType mysql
+    dtoSuffix DTO
+    enableGradleEnterprise false
+    enableHibernateCache false
+    enableSwaggerCodegen false
+    enableTranslation false
+    gradleEnterpriseHost ""
+    jhiPrefix jhi
+    jhipsterVersion "7.9.3"    
+    languages [en, fr]
+    messageBroker false    
+    nativeLanguage en
+    otherModules []
+    packageName com.codebridgecommunity.crm
+    prodDatabaseType mysql
+    reactive true    
+    serverPort 8080
+    serviceDiscoveryType eureka
+    skipClient false
+    skipUserManagement false
+    testFrameworks []
+    websocket false
+    withAdminUi true
+  }
+
+  entities *
+}
+
+entity Employee{
+	empName String required unique
+    empAge Integer required min(20) max(45)
+    gender Gender required
+    empJobTitle String required 
+    empPhone String required
+    empEmail String required pattern(/^[^@\s]+@[^@\s]+.com/)
+    engage SocMed
+}
+entity Customer {
+    custName String required unique    
+    gender Gender required
+    custIC String required
+    custEmail String required pattern(/^[^@\s]+@[^@\s]+.com/)
+    custPhone String required
+    company String required
+    custJobTitle String required
+    engage SocMed    
+}
+entity Company {	
+    industry String required 
+    location String required
+    established String required
+    engage SocMed    
+}
+enum SocMed {
+    Instagram, LinkedIn, Twitter, Website
+}
+entity Lead {
+    followUp String
+    status LeadStatus required    
+}
+enum LeadStatus {
+    MAINTAIN_LEAD, POTENTIAL_OPPORTUNITY, DELETE
+}
+entity PotentialOpportunity {    
+    followUp String
+    status POStatus required    
+}
+enum POStatus {
+    MAINTAIN_PO, OPPORTUNITY, DELETE
+}
+entity Opportunity {    
+    followUp String
+    status OppStatus required    
+}
+enum OppStatus {
+    MAINTAIN_OPPORTUNITY, WIN, LOSS
+}
+entity Product {
+    name ProdName required unique   
+    description String
+    price BigDecimal required min(0)        
+}
+enum ProdName {
+    PRODUCT_1, PRODUCT_2, PRODUCT_3
+}
+entity Customer {
+    custName String required unique    
+    gender Gender required
+    custIC String required
+    custEmail String required pattern(/^[^@\s]+@[^@\s]+.com/)
+    custPhone String required
+    companyName String required
+    custJobTitle String required
+    engage SocMed
+}
+enum Gender {
+    MALE, FEMALE
+}
+entity ProductOrder {
+    placedDate String required unique
+    status OrderStatus required    
+    invoiceId String unique
+    quantity Integer required min(0)
+    totalPrice BigDecimal required min(0)
+    status OrderItemStatus required
+}
+enum OrderStatus {
+    COMPLETED, PENDING, CANCELLED
+}
+enum OrderItemStatus {
+    AVAILABLE, OUT_OF_STOCK, BACK_ORDER
+}
+entity WinLoss{
+	notes String    
+}
+relationship OneToOne {
+	Lead{customer(custName) required} to Customer
+    Lead{employee(empName) required} to Employee
+    PotentialOpportunity{customer(custName) required} to Customer
+    PotentialOpportunity{employee(empName) required} to Employee
+    Opportunity{customer(custName) required} to Customer
+    Opportunity{employee(empName) required} to Employee
+    WinLoss{opportunity(status) required} to Opportunity
+    WinLoss{customer(custName) required} to Customer    
+}
+relationship ManyToOne {
+    ProductOrder{product(name) required} to Product
+    Lead{product(name) required} to Product
+    PotentialOpportunity{product(name) required} to Product
+    Opportunity{product(name) required} to Product
+    WinLoss{product(name) required} to Product
+}
+relationship OneToMany {
+    Customer{order} to ProductOrder{customer(custEmail) required}
+   	Company{customer(custName) required} to Customer    
+}
+
+filter Employee, Product, Customer, Company, ProductOrder, Lead, PotentialOpportunity, Opportunity, WinLoss
+service Employee, Product, Customer, Company, ProductOrder, Lead, PotentialOpportunity, Opportunity, WinLoss with serviceClass
+paginate Employee, Product, Customer, Company, ProductOrder, Lead, PotentialOpportunity, Opportunity, WinLoss with pagination

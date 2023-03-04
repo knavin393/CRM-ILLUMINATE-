@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="potentialOpportunity">
+      <h2 data-cy="potentialOpportunityDetailsHeading"><span>Potential Opportunity</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ potentialOpportunity.id }}</span>
+        </dd>
+        <dt><span>Follow Up</span></dt>
+        <dd>
+          <span>{{ potentialOpportunity.followUp }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ potentialOpportunity.status }}</span>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+          <div *ngIf="potentialOpportunity.customer">
+            <a [routerLink]="['/customer', potentialOpportunity.customer.id, 'view']">{{ potentialOpportunity.customer.custName }}</a>
+          </div>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+          <div *ngIf="potentialOpportunity.employee">
+            <a [routerLink]="['/employee', potentialOpportunity.employee.id, 'view']">{{ potentialOpportunity.employee.empName }}</a>
+          </div>
+        </dd>
+        <dt><span>Product</span></dt>
+        <dd>
+          <div *ngIf="potentialOpportunity.product">
+            <a [routerLink]="['/product', potentialOpportunity.product.id, 'view']">{{ potentialOpportunity.product.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/potential-opportunity', potentialOpportunity.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

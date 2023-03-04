@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="employee">
+      <h2 data-cy="employeeDetailsHeading"><span>Employee</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ employee.id }}</span>
+        </dd>
+        <dt><span>Emp Name</span></dt>
+        <dd>
+          <span>{{ employee.empName }}</span>
+        </dd>
+        <dt><span>Emp Age</span></dt>
+        <dd>
+          <span>{{ employee.empAge }}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+          <span>{{ employee.gender }}</span>
+        </dd>
+        <dt><span>Emp Job Title</span></dt>
+        <dd>
+          <span>{{ employee.empJobTitle }}</span>
+        </dd>
+        <dt><span>Emp Phone</span></dt>
+        <dd>
+          <span>{{ employee.empPhone }}</span>
+        </dd>
+        <dt><span>Emp Email</span></dt>
+        <dd>
+          <span>{{ employee.empEmail }}</span>
+        </dd>
+        <dt><span>Engage</span></dt>
+        <dd>
+          <span>{{ employee.engage }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/employee', employee.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

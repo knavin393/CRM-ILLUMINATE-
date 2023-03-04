@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-company-heading" data-cy="CompanyCreateUpdateHeading">Create or edit a Company</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_industry">Industry</label>
+          <input type="text" class="form-control" name="industry" id="field_industry" data-cy="industry" formControlName="industry" />
+          <div *ngIf="editForm.get('industry')!.invalid && (editForm.get('industry')!.dirty || editForm.get('industry')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('industry')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_location">Location</label>
+          <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
+          <div *ngIf="editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('location')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_established">Established</label>
+          <input
+            type="text"
+            class="form-control"
+            name="established"
+            id="field_established"
+            data-cy="established"
+            formControlName="established"
+          />
+          <div *ngIf="editForm.get('established')!.invalid && (editForm.get('established')!.dirty || editForm.get('established')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('established')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_engage">Engage</label>
+          <select class="form-control" name="engage" formControlName="engage" id="field_engage" data-cy="engage">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let socMed of socMedValues" [value]="socMed">socMed</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

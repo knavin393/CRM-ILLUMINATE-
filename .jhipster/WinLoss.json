@@ -1,0 +1,44 @@
+{
+  "applications": ["crm"],
+  "changelogDate": "20230304051108",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "win_loss",
+  "fields": [
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "WinLoss",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "status",
+      "otherEntityName": "opportunity",
+      "ownerSide": true,
+      "relationshipName": "opportunity",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "custName",
+      "otherEntityName": "customer",
+      "ownerSide": true,
+      "relationshipName": "customer",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "product",
+      "relationshipName": "product",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

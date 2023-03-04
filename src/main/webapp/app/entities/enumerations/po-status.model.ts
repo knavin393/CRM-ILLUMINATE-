@@ -1,0 +1,7 @@
+export enum POStatus {
+  MAINTAIN_PO = 'MAINTAIN_PO',
+
+  OPPORTUNITY = 'OPPORTUNITY',
+
+  DELETE = 'DELETE',
+}

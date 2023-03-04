@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-customer-heading" data-cy="CustomerCreateUpdateHeading">Create or edit a Customer</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_custName">Cust Name</label>
+          <input type="text" class="form-control" name="custName" id="field_custName" data-cy="custName" formControlName="custName" />
+          <div *ngIf="editForm.get('custName')!.invalid && (editForm.get('custName')!.dirty || editForm.get('custName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('custName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let gender of genderValues" [value]="gender">gender</option>
+          </select>
+          <div *ngIf="editForm.get('gender')!.invalid && (editForm.get('gender')!.dirty || editForm.get('gender')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gender')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_custIC">Cust IC</label>
+          <input type="text" class="form-control" name="custIC" id="field_custIC" data-cy="custIC" formControlName="custIC" />
+          <div *ngIf="editForm.get('custIC')!.invalid && (editForm.get('custIC')!.dirty || editForm.get('custIC')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('custIC')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_custEmail">Cust Email</label>
+          <input type="text" class="form-control" name="custEmail" id="field_custEmail" data-cy="custEmail" formControlName="custEmail" />
+          <div *ngIf="editForm.get('custEmail')!.invalid && (editForm.get('custEmail')!.dirty || editForm.get('custEmail')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('custEmail')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('custEmail')?.errors?.pattern">
+              This field should follow pattern for Cust Email.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_custPhone">Cust Phone</label>
+          <input type="text" class="form-control" name="custPhone" id="field_custPhone" data-cy="custPhone" formControlName="custPhone" />
+          <div *ngIf="editForm.get('custPhone')!.invalid && (editForm.get('custPhone')!.dirty || editForm.get('custPhone')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('custPhone')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_companyName">Company Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="companyName"
+            id="field_companyName"
+            data-cy="companyName"
+            formControlName="companyName"
+          />
+          <div *ngIf="editForm.get('companyName')!.invalid && (editForm.get('companyName')!.dirty || editForm.get('companyName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('companyName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_custJobTitle">Cust Job Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="custJobTitle"
+            id="field_custJobTitle"
+            data-cy="custJobTitle"
+            formControlName="custJobTitle"
+          />
+          <div
+            *ngIf="editForm.get('custJobTitle')!.invalid && (editForm.get('custJobTitle')!.dirty || editForm.get('custJobTitle')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('custJobTitle')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_engage">Engage</label>
+          <select class="form-control" name="engage" formControlName="engage" id="field_engage" data-cy="engage">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let socMed of socMedValues" [value]="socMed">socMed</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_company">Company</label>
+          <select
+            class="form-control"
+            id="field_company"
+            data-cy="company"
+            name="company"
+            formControlName="company"
+            [compareWith]="compareCompany"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="companyOption" *ngFor="let companyOption of companiesSharedCollection">{{ companyOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

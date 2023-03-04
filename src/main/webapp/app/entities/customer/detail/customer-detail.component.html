@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customer">
+      <h2 data-cy="customerDetailsHeading"><span>Customer</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ customer.id }}</span>
+        </dd>
+        <dt><span>Cust Name</span></dt>
+        <dd>
+          <span>{{ customer.custName }}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+          <span>{{ customer.gender }}</span>
+        </dd>
+        <dt><span>Cust IC</span></dt>
+        <dd>
+          <span>{{ customer.custIC }}</span>
+        </dd>
+        <dt><span>Cust Email</span></dt>
+        <dd>
+          <span>{{ customer.custEmail }}</span>
+        </dd>
+        <dt><span>Cust Phone</span></dt>
+        <dd>
+          <span>{{ customer.custPhone }}</span>
+        </dd>
+        <dt><span>Company Name</span></dt>
+        <dd>
+          <span>{{ customer.companyName }}</span>
+        </dd>
+        <dt><span>Cust Job Title</span></dt>
+        <dd>
+          <span>{{ customer.custJobTitle }}</span>
+        </dd>
+        <dt><span>Engage</span></dt>
+        <dd>
+          <span>{{ customer.engage }}</span>
+        </dd>
+        <dt><span>Company</span></dt>
+        <dd>
+          <div *ngIf="customer.company">
+            <a [routerLink]="['/company', customer.company.id, 'view']">{{ customer.company.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/customer', customer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

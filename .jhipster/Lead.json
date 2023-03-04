@@ -1,0 +1,50 @@
+{
+  "applications": ["crm"],
+  "changelogDate": "20230304050608",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "jhi_lead",
+  "fields": [
+    {
+      "fieldName": "followUp",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "LeadStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MAINTAIN_LEAD,POTENTIAL_OPPORTUNITY,DELETE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Lead",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "custName",
+      "otherEntityName": "customer",
+      "ownerSide": true,
+      "relationshipName": "customer",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "empName",
+      "otherEntityName": "employee",
+      "ownerSide": true,
+      "relationshipName": "employee",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "product",
+      "relationshipName": "product",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

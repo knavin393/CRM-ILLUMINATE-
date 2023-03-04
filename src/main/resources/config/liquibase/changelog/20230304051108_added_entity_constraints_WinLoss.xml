@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity WinLoss.
+    -->
+    <changeSet id="20230304051108-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="opportunity_id"
+                                 baseTableName="win_loss"
+                                 constraintName="fk_win_loss__opportunity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="opportunity"/>
+
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="win_loss"
+                                 constraintName="fk_win_loss__customer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="win_loss"
+                                 constraintName="fk_win_loss__product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,11 @@
+id;follow_up;status;customer_id;employee_id;product_id
+1;Eritrea to Uganda;DELETE;1;1;1
+2;port Officer;DELETE;2;2;2
+3;Soap Loan;POTENTIAL_OPPORTUNITY;3;3;3
+4;Fiji;MAINTAIN_LEAD;4;4;4
+5;Central Representative quantifying;MAINTAIN_LEAD;5;5;5
+6;SDD;MAINTAIN_LEAD;6;6;6
+7;SDD;POTENTIAL_OPPORTUNITY;7;7;7
+8;override purple Ohio;DELETE;8;8;8
+9;Account;POTENTIAL_OPPORTUNITY;9;9;9
+10;parsing;DELETE;10;10;10

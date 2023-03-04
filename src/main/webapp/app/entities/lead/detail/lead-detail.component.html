@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="lead">
+      <h2 data-cy="leadDetailsHeading"><span>Lead</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ lead.id }}</span>
+        </dd>
+        <dt><span>Follow Up</span></dt>
+        <dd>
+          <span>{{ lead.followUp }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ lead.status }}</span>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+          <div *ngIf="lead.customer">
+            <a [routerLink]="['/customer', lead.customer.id, 'view']">{{ lead.customer.custName }}</a>
+          </div>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+          <div *ngIf="lead.employee">
+            <a [routerLink]="['/employee', lead.employee.id, 'view']">{{ lead.employee.empName }}</a>
+          </div>
+        </dd>
+        <dt><span>Product</span></dt>
+        <dd>
+          <div *ngIf="lead.product">
+            <a [routerLink]="['/product', lead.product.id, 'view']">{{ lead.product.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/lead', lead.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
