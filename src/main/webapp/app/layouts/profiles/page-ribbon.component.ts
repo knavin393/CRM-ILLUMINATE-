@@ -7,11 +7,11 @@ import { ProfileService } from './profile.service';
 @Component({
   selector: 'jhi-page-ribbon',
   template: `
-    <div class="ribbon" *ngIf="ribbonEnv$ | async as ribbonEnv">
-      <a href="">{{ { dev: 'Development' }[ribbonEnv] || '' }}</a>
+    <div class="" *ngIf="ribbonEnv$ | async as ribbonEnv">
+      <a href="">{{ { dev: '' }[ribbonEnv] || '' }}</a>
     </div>
   `,
-  styleUrls: ['./page-ribbon.component.scss'],
+  //styleUrls: ['./page-ribbon.component.scss'],
 })
 export class PageRibbonComponent implements OnInit {
   ribbonEnv$?: Observable<string | undefined>;
